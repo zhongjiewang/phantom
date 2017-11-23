@@ -7,14 +7,20 @@ phantom - Fast NodeJS API for PhantomJS
 [![Linux Build][travis-image]][travis-url]
 [![Dependencies][david-image]][david-url]
 
-====修改说明
+修改说明
+=====
+在lib/shim/index.js 如下符号之间添加了代码,其他处没做改动
+>>>>>>>>>>
+
+<<<<<<<<<
+
+修改过程:
 1.最初操作如下所示,发现并未如我们所愿, allDetect.html中window依然有callPhantom,Navigator.plugins 的长度依然为 0 , 但在phantomjs 环境下,操作有效, 
 2.原因可能为 
 >1.我们采用 phantom 这个node 的 第三方库,在node进程中, 其采用child_process.spawn出一个子进程,在子进程中执行phantomjs shim/index.js, 其后不断通过, 
 child_process.stdin.write(json + _os2.default.EOL, 'utf8'); 在子进程中输入命令来执行关于
 phantomjs的操作, 这样有迟缓性, 
 >2.page.evaluate() 方法的特殊性, ???
-
 
 const phantom = require('phantom');
 const instance = await phantom.create();
@@ -25,10 +31,10 @@ await page.on('onInitialized', async function(msg, linNum) {
         var oldPlugins = oldNavigator.plugins;
         var plugins = {};
         plugins.length = 1;
-        plugins.__proto__ = oldPlugins.__proto__;
+        plugins.__proto__ = oldPlugins;
 
         window.navigator = {plugins: plugins};
-        window.navigator.__proto__ = oldNavigator.__proto__;
+        window.navigator.__proto__ = oldNavigator;
   
         //spoof callPhantom
         var p = window.callPhantom;
