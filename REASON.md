@@ -154,21 +154,27 @@ debug: Received
     await page.on('onInitialized', async function(msg) { 
         console.log('--------we received  page  onInitialized callback-------');
         page.evaluate(function () { 
+        
         });
     });
 ```
-其并没有 一开始就全部转化成 phantomjs 环境下的代码, 最初只是转化成了
+经过 
+```js
+debug: Sending: {"id":2,"target":"page$1","name":"addEvent","params":[{"type":"onInitialized"}],"deferred":null}
+```
+#### 请注意 这个消息中 只有 addEvent onInitialized , 并没有onInitialized 回调中的代码片段,只是单独 添加了这个事件,因此这个消息 仅仅转化了成了如下代码
 ```js
 page.onInitialized = function () {
 
 };
 ```
+
 然后再收到page  onInitialized 回调之后
 ```json
 --------we received  page  onInitialized callback-------
-debug: Sending: {"id":4,"target":"page$1","name":"invokeMethod","params":["evaluate","function
+debug: Sending: {"id":4,"target":"page$1","name":"invokeMethod","params":["evaluate","function () { .... }
 
-此时才向 phantomjs 进程发送 执行 evaluate 的消息,
+此时才向 phantomjs 进程发送 执行 evaluate 的消息,这个消息中有 evaluate callback 中的代码
 因此 phantomjs 环境下的代码便是
 ```
 ```js
