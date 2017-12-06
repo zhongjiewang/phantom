@@ -1,0 +1,22 @@
+xiangrikuid:babelProduction zhongjie$ DEBUG=true node server.js 
+debug: Starting /usr/local/bin/phantomjs /Users/zhongjie/node_modules/phantom/lib/shim/index.js
+debug: Sending: {"id":1,"target":"phantom","name":"createPage","params":[],"deferred":null}
+debug: Sending NOOP command.
+info: command id  1
+debug: Parsing: {"id":1,"target":"phantom","name":"createPage","params":[],"deferred":null,"response":{"pageId":1}}
+debug: Received NOOP command.
+debug: Sending: {"id":2,"target":"page$1","name":"addEvent","params":[{"type":"onInitialized"}],"deferred":null}
+debug: Sending NOOP command.
+debug: Parsing: {"id":2,"target":"page$1","name":"addEvent","params":[{"type":"onInitialized"}],"deferred":null}
+debug: Sending: {"id":3,"target":"page$1","name":"invokeAsyncMethod","params":["open","./test/allDetect.html"],"deferred":null}
+debug: Received NOOP command.
+debug: Sending NOOP command.
+debug: Parsing: {"target":"page$1","type":"onInitialized","args":[]}
+--------we received  page  onInitialized callback-------
+debug: Sending: {"id":4,"target":"page$1","name":"invokeMethod","params":["evaluate","function () {\n                          var oldNavigator = navigator;\n                          var oldPlugins = oldNavigator.plugins;\n                          var plugins = {};\n                          plugins.length = 1;\n                          plugins.proto = oldPlugins;\n\n                          window.navigator = { plugins: plugins };\n                          window.navigator.__proto__ = oldNavigator;\n\n                          // //spoof callPhantom\n                          // var p = window.callPhantom;\n                          // delete window._phantom;\n                          // delete window.callPhantom;\n                          // Object.defineProperty(window, \"myCallPhantom\", {\n                          //     get: function () {\n                          //         return p;\n                          //     },\n                          //     set: function () {\n                          //     }, enumerable: false});\n                          // setTimeout(function () {\n                          //     window.myCallPhantom();\n                          // }, 1000);   \n                        }"],"deferred":null}
+debug: Received NOOP command.
+debug: Parsing: {"id":3,"target":"page$1","name":"invokeAsyncMethod","params":["open","./test/allDetect.html"],"deferred":null,"response":"success"}
+--open allDetect ---status----------- success
+debug: Sending NOOP command.
+debug: Parsing: {"id":4,"target":"page$1","name":"invokeMethod","params":["evaluate",null],"deferred":null,"response":null}
+debug: Received
