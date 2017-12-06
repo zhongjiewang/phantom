@@ -22,6 +22,7 @@ child_process.stdin.write(json + _os2.default.EOL, 'utf8'); 在子进程中输�
 phantomjs的操作, 这样有迟缓性, 
 >2.page.evaluate() 方法的特殊性, ???
 
+```json
 const phantom = require('phantom');
 const instance = await phantom.create();
 const page = await instance.createPage();
@@ -52,7 +53,7 @@ await page.on('onInitialized', async function(msg, linNum) {
   });
 });
 const status = await page.open('./allDetect.html');
-
+```
 
 
 
