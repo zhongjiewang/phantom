@@ -164,13 +164,14 @@ page.onInitialized = function () {
 };
 ```
 然后再收到page  onInitialized 回调之后
-```js
+```json
 --------we received  page  onInitialized callback-------
 debug: Sending: {"id":4,"target":"page$1","name":"invokeMethod","params":["evaluate","function
 
 此时才向 phantomjs 进程发送 执行 evaluate 的消息,
 因此 phantomjs 环境下的代码便是
-
+```
+```js
 page.onInitialized = function () {
 
 };
